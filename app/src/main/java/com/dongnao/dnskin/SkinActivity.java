@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.dongnao.skin.core2.SkinManager;
+import com.longfor.skin.core3.SkinManager;
 
 
 /**

@@ -38,7 +38,7 @@ public class SkinManager  extends Observable{
         loadSkin(SkinPreference.getInstance().getSkin());
     }
 
-    public void init(Application application) {
+    public static void init(Application application) {
         synchronized (SkinManager.class) {
             if (null == instance) {
                 instance = new SkinManager(application);
@@ -47,7 +47,7 @@ public class SkinManager  extends Observable{
     }
 
     //加载皮肤包
-    private void loadSkin(String path) {
+    public void loadSkin(String path) {
         if(TextUtils.isEmpty(path)){
             SkinPreference.getInstance().setSkin("");
             SkinResource.getInstance().reset();

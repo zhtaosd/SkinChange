@@ -2,7 +2,7 @@ package com.dongnao.dnskin;
 
 import android.app.Application;
 
-import com.dongnao.skin.core2.SkinManager;
+import com.longfor.skin.core3.SkinManager;
 
 
 /**
