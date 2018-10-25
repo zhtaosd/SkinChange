@@ -2,6 +2,7 @@ package com.longfor.skin.core3;
 
 import android.app.Activity;
 import android.app.Application;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.view.LayoutInflater;
@@ -35,7 +36,8 @@ public class SkinActivityLifecycle implements Application.ActivityLifecycleCallb
         }
 
         //进行工厂的设置
-        SkinLayoutFactory factory = new SkinLayoutFactory(activity);
+        Typeface typeface = SkinThemeUtils.getSkinTypeface(activity);
+        SkinLayoutFactory factory = new SkinLayoutFactory(activity,typeface);
         LayoutInflaterCompat.setFactory2(inflater,factory);
 
         SkinManager.getInstance().addObserver(factory);

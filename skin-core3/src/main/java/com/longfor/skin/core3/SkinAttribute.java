@@ -1,5 +1,6 @@
 package com.longfor.skin.core3;
 
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewCompat;
@@ -34,6 +35,12 @@ public class SkinAttribute {
         mAttributes.add("drawableBottom");
     }
 
+    private Typeface typeface;
+
+    public SkinAttribute(Typeface typeface) {
+        this.typeface = typeface;
+    }
+
     public void load(View view, AttributeSet attrs){
         List<SkinPair> skinPairs = new ArrayList<>();
         for (int i = 0; i < attrs.getAttributeCount(); i++) {
@@ -56,11 +63,15 @@ public class SkinAttribute {
                 }
             }
         }
+        if(!skinPairs.isEmpty()||view instanceof TextView){
+            SkinView skinView = new SkinView(view,skinPairs);
+            skinView.applySkinTypeface(typeface);
+        }
     }
 
-    public void applySkin(){
+    public void applySkin(Typeface typeface){
         for (SkinView mSkinView : mSkinViews) {
-            mSkinView.applySkin();
+            mSkinView.applySkin(typeface);
         }
     }
 
@@ -74,7 +85,8 @@ public class SkinAttribute {
             this.skinPairs = skinPairs;
         }
 
-        public void applySkin(){
+        public void applySkin(Typeface typeface){
+            applySkinTypeface(typeface);
             for (SkinPair skinPair : skinPairs) {
                 Drawable left = null,top = null,right = null,bottom = null;
                 switch (skinPair.attributeName){
@@ -113,6 +125,11 @@ public class SkinAttribute {
                 if(null!=left || null!=top ||null!=right ||null!=bottom ){
                     ((TextView)view).setCompoundDrawablesRelativeWithIntrinsicBounds(left,top,right,bottom);
                 }
+            }
+        }
+        private void applySkinTypeface(Typeface typeface){
+            if(view instanceof TextView){
+                ((TextView)view).setTypeface(typeface);
             }
         }
     }

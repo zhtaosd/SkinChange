@@ -3,10 +3,16 @@ package com.longfor.skin.core3.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+
+import com.longfor.skin.core3.R;
 
 public class SkinThemeUtils {
+
+    private static int[] TYPEFACE_ATTR = {
+            R.attr.skinTypeface
+    };
 
     private static int[] APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = {
             android.support.v7.appcompat.R.attr.colorPrimaryDark
@@ -44,5 +50,13 @@ public class SkinThemeUtils {
                 activity.getWindow().setNavigationBarColor(SkinResource.getInstance().getColor(resIDs[1]));
             }
         }
+    }
+
+    /**
+     * 获得字体
+     */
+    public static Typeface getSkinTypeface(Activity activity){
+        int skinTypeceID = getResID(activity,TYPEFACE_ATTR)[0];
+        return SkinResource.getInstance().getTypeface(skinTypeceID);
     }
 }

@@ -1,8 +1,10 @@
 package com.longfor.skin.core3.util;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
@@ -100,5 +102,31 @@ public class SkinResource {
         isDefaultSkin = true;
         mSkinPkgName = "";
         mSkinResource = null;
+    }
+
+    public Typeface getTypeface(int skinTypeceID) {
+        String skinTypefacePath = getString(skinTypeceID);
+        if(TextUtils.isEmpty(skinTypefacePath)){
+            return Typeface.DEFAULT;
+        }
+        Typeface typeface;
+        if(isDefaultSkin){
+            typeface = Typeface.createFromAsset(mAppResources.getAssets(),skinTypefacePath);
+        }else{
+            typeface = Typeface.createFromAsset(mSkinResource.getAssets(),skinTypefacePath);
+        }
+        return typeface;
+    }
+
+    public String getString(int resID){
+        if(isDefaultSkin){
+            return mAppResources.getString(resID);
+        }
+        int skinID  = getIdentifier(resID);
+        if(skinID == 0){
+            return mAppResources.getString(resID);
+        }else{
+            return  mSkinResource.getString(resID);
+        }
     }
 }
