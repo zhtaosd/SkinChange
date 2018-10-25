@@ -56,7 +56,7 @@ public class SkinResource {
         return mSkinResource.getDrawable(resID);
     }
 
-    public Object getColor(int resID) {
+    public int getColor(int resID) {
         if(isDefaultSkin){
             return mAppResources.getColor(resID);
         }

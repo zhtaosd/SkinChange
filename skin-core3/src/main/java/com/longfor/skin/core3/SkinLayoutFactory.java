@@ -1,9 +1,13 @@
 package com.longfor.skin.core3;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import com.longfor.skin.core3.util.SkinResource;
+import com.longfor.skin.core3.util.SkinThemeUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -30,7 +34,10 @@ public class SkinLayoutFactory implements LayoutInflater.Factory2,Observer {
             Context.class, AttributeSet.class};
 
     SkinAttribute skinAttribute;
-    public SkinLayoutFactory(){
+
+    private Activity activity;
+    public SkinLayoutFactory(Activity activity){
+        this.activity = activity;
         skinAttribute = new SkinAttribute();
     }
 
@@ -89,6 +96,7 @@ public class SkinLayoutFactory implements LayoutInflater.Factory2,Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        SkinThemeUtils.updateStatusBar(activity);
         skinAttribute.applySkin();
     }
 }
