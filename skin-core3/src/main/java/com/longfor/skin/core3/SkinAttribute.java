@@ -33,6 +33,8 @@ public class SkinAttribute {
         mAttributes.add("drawableTop");
         mAttributes.add("drawableRight");
         mAttributes.add("drawableBottom");
+
+        mAttributes.add("skinTypeface");
     }
 
     private Typeface typeface;
@@ -120,6 +122,10 @@ public class SkinAttribute {
                         break;
                     case"drawableBottom":
                         bottom = SkinResource.getInstance().getDrawble(skinPair.resID);
+                        break;
+                    case"skinTypeface":
+                        Typeface typeface1 = SkinResource.getInstance().getTypeface(skinPair.resID);
+                        applySkinTypeface(typeface1);
                         break;
                 }
                 if(null!=left || null!=top ||null!=right ||null!=bottom ){
